@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage("Download Git") {
             steps {
-                checkout scm
+                git checkout
             }
         }
         stage("Get hostname") {

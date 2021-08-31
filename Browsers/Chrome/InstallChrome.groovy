@@ -1,20 +1,13 @@
-#!groovy
-properties([
-	buildDiscarder(
-		logRotator(
-			artifactDaysToKeepStr: '',
-			artifactNumToKeepStr: '',
-			daysToKeepStr: '',
-			numToKeepStr: '100')
-	),
-	disableConcurrentBuilds()
-  timestamps()
-])
 
 pipeline {
     agent { 
         label 'WindowsClient'                                                                    
         }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+	disableConcurrentBuilds()
+        timestamps()
+    }
     stages {
         stage("Download Git") {
             steps {
